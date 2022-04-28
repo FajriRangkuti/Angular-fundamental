@@ -8,6 +8,7 @@ import { Owner } from './owner';
 import { paylaterDetail } from './paylater';
 import * as $ from 'jquery';
 import { MessageService } from 'primeng/api';
+import { ToastrService } from 'ngx-toastr';
 
 
 @Component({
@@ -26,9 +27,7 @@ export class AppComponent implements OnInit{
     this.getPaylaterDetail();
     this.getValue();
   }
-
-  //constructor(private ownerService: OwnerService){}
-  constructor(private paylaterService: DetailpaylaterService){}
+  constructor(private paylaterService: DetailpaylaterService,private toastr: ToastrService){}
 
 
   public getValue(): void{
@@ -52,7 +51,7 @@ export class AppComponent implements OnInit{
         //alert("Successfully Data Exported.")
         this.getPaylaterDetail();
         this.onCloseModal();
-        // this.addSingle();
+        this.toastr.success("Export PDF Successfully!");
       }
     );
   }
