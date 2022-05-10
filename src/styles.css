@@ -64,3 +64,7 @@ color: white;
 a {
     color:rgb(19, 184, 196);
 }
+
+#addUser:hover{
+  background-color: #707070;
+}

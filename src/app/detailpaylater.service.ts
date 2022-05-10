@@ -9,6 +9,8 @@ import { paylaterDetail } from './paylater';
 })
 export class DetailpaylaterService {
 
+  
+
   private apiBaseUrl = environment.apiBaseUrl
 
   constructor(private http:HttpClient) { }
@@ -24,4 +26,18 @@ export class DetailpaylaterService {
   public generatePDF(id:String,logoName:String): Observable<void>{
     return this.http.get<void>(`${this.apiBaseUrl}/paylater/${id}/mandiri_logo.png/export`)
   }
+
+  public uploadPDF(file):Observable<any>{
+    const formData = new FormData();
+
+    formData.append("file",file, file.name);
+    console.log(file.name);
+
+    return this.http.post(`${this.apiBaseUrl}/upload/logo`,formData);
+  }
+
+  public modifyPDF(file,name,address,id){
+    return this.http.get(`${this.apiBaseUrl}/modify/${file.name}/export?name=${name}&address=${address}&id=${id}`);
+  }
+
 }
